@@ -7,9 +7,9 @@ public class Gun : MonoBehaviourPunCallbacks {
     [HideInInspector] public static Gun Instance;
     [HideInInspector] public int clip, reserveAmmo;
     [HideInInspector] public Action<int, int> OnGunUpdate;
-    protected Animator animator;
     protected bool isReloading;
     protected float fireRate, nextFire;
+    [SerializeField] protected Animator animator;
     [SerializeField] protected ParticleSystem muzzleFlash;
     [SerializeField] protected float bloom, RPM, reloadTime;
     [SerializeField] protected int clipCount, clipSize, damage;

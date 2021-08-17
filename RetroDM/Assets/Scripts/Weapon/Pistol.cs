@@ -13,8 +13,8 @@ public class Pistol : Gun {
     protected override void Update() {
         if(isFiring && !isReloading) {
             base.Shoot();
-            Debug.Log("Fire!");
             isFiring = false;
+            animator.SetBool("isFiring", false);
         }
     }
 }
