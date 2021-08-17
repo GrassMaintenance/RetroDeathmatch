@@ -5,12 +5,12 @@ using UnityEngine;
 public class Pickup : MonoBehaviourPunCallbacks {
 	[SerializeField] private AudioClip ammoPickupClip;
 	[SerializeField] private AudioClip healthPickupClip;
-	[SerializeField] private float amplitude = 0.25f;
+	//[SerializeField] private float amplitude = 0.25f;
 	private PhotonView PV;
 
 
 	private void Update() {
-		transform.Translate(Vector3.up * Mathf.Sin(Time.time) * Time.deltaTime * amplitude, Space.World);
+		//transform.Translate(Vector3.up * Mathf.Sin(Time.time) * Time.deltaTime * amplitude, Space.World);
 		transform.Rotate(Vector3.up * Time.deltaTime * 15, Space.World);
 	}
 

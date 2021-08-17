@@ -148,7 +148,7 @@
                     "id": "aeaa80dd-81b7-445b-a6d0-02b340fd5472",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "Scale",
                     "groups": "",
                     "action": "Shoot",
                     "isComposite": false,

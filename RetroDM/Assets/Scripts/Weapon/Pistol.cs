@@ -1,13 +1,20 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
 public class Pistol : Gun {
 
+    private bool isFiring;
+
     protected override void Start() {
-        //Check if player pressed fire button
-        controls.Controls.Shoot.performed += _ => GetInput();
+        controls.Controls.Shoot.performed += _ => isFiring = true;
+        base.Start();
     }
 
-    protected override void GetInput() {
-        if (!isReloading) {
-            PV.RPC("Shoot", Photon.Pun.RpcTarget.All);
+    protected override void Update() {
+        if(isFiring && !isReloading) {
+            base.Shoot();
+            Debug.Log("Fire!");
+            isFiring = false;
         }
     }
 }

@@ -6,9 +6,11 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @PlayerControls : IInputActionCollection, IDisposable {
+public class @PlayerControls : IInputActionCollection, IDisposable
+{
     public InputActionAsset asset { get; }
-    public @PlayerControls() {
+    public @PlayerControls()
+    {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""PlayerControls"",
     ""maps"": [
@@ -159,7 +161,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable {
                     ""id"": ""aeaa80dd-81b7-445b-a6d0-02b340fd5472"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""Scale"",
                     ""groups"": """",
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
@@ -191,39 +193,47 @@ public class @PlayerControls : IInputActionCollection, IDisposable {
         m_PlayerControls_WeaponSwitch = m_PlayerControls.FindAction("WeaponSwitch", throwIfNotFound: true);
     }
 
-    public void Dispose() {
+    public void Dispose()
+    {
         UnityEngine.Object.Destroy(asset);
     }
 
-    public InputBinding? bindingMask {
+    public InputBinding? bindingMask
+    {
         get => asset.bindingMask;
         set => asset.bindingMask = value;
     }
 
-    public ReadOnlyArray<InputDevice>? devices {
+    public ReadOnlyArray<InputDevice>? devices
+    {
         get => asset.devices;
         set => asset.devices = value;
     }
 
     public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
 
-    public bool Contains(InputAction action) {
+    public bool Contains(InputAction action)
+    {
         return asset.Contains(action);
     }
 
-    public IEnumerator<InputAction> GetEnumerator() {
+    public IEnumerator<InputAction> GetEnumerator()
+    {
         return asset.GetEnumerator();
     }
 
-    IEnumerator IEnumerable.GetEnumerator() {
+    IEnumerator IEnumerable.GetEnumerator()
+    {
         return GetEnumerator();
     }
 
-    public void Enable() {
+    public void Enable()
+    {
         asset.Enable();
     }
 
-    public void Disable() {
+    public void Disable()
+    {
         asset.Disable();
     }
 
@@ -236,7 +246,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable {
     private readonly InputAction m_PlayerControls_Reload;
     private readonly InputAction m_PlayerControls_Shoot;
     private readonly InputAction m_PlayerControls_WeaponSwitch;
-    public struct PlayerControlsActions {
+    public struct PlayerControlsActions
+    {
         private @PlayerControls m_Wrapper;
         public PlayerControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @WASD => m_Wrapper.m_PlayerControls_WASD;
@@ -250,8 +261,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable {
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
         public static implicit operator InputActionMap(PlayerControlsActions set) { return set.Get(); }
-        public void SetCallbacks(IPlayerControlsActions instance) {
-            if(m_Wrapper.m_PlayerControlsActionsCallbackInterface != null) {
+        public void SetCallbacks(IPlayerControlsActions instance)
+        {
+            if (m_Wrapper.m_PlayerControlsActionsCallbackInterface != null)
+            {
                 @WASD.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnWASD;
                 @WASD.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnWASD;
                 @WASD.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnWASD;
@@ -272,7 +285,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable {
                 @WeaponSwitch.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnWeaponSwitch;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
-            if(instance != null) {
+            if (instance != null)
+            {
                 @WASD.started += instance.OnWASD;
                 @WASD.performed += instance.OnWASD;
                 @WASD.canceled += instance.OnWASD;
@@ -295,7 +309,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable {
         }
     }
     public PlayerControlsActions @Controls => new PlayerControlsActions(this);
-    public interface IPlayerControlsActions {
+    public interface IPlayerControlsActions
+    {
         void OnWASD(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnMouseLook(InputAction.CallbackContext context);

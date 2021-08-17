@@ -1,6 +1,7 @@
 ﻿using Photon.Pun;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Gun : MonoBehaviourPunCallbacks {
     [HideInInspector] public static Gun Instance;
@@ -9,7 +10,7 @@ public class Gun : MonoBehaviourPunCallbacks {
     protected Animator animator;
     protected bool isReloading;
     protected float fireRate, nextFire;
-    [SerializeField] private ParticleSystem muzzleFlash;
+    [SerializeField] protected ParticleSystem muzzleFlash;
     [SerializeField] protected float bloom, RPM, reloadTime;
     [SerializeField] protected int clipCount, clipSize, damage;
     protected GameObject bulletHolePrefab, bloodParticlePrefab, impactParticlePrefab;
@@ -18,16 +19,16 @@ public class Gun : MonoBehaviourPunCallbacks {
     protected PhotonView PV;
     protected PlayerController player;
     protected PlayerControls controls;
-    private AudioSource audioSource;
-    private Camera playerCamera;
+    protected AudioSource audioSource;
+    protected Camera playerCamera;
     private GameObject particlePrefab;
     private Vector3 shootDirection;
 
-    private void Awake() {
+    protected virtual void Awake() {
         //Get all components and prefabs
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        bulletHolePrefab = Resources.Load("Prefabs/BulletHole") as GameObject;
+        bulletHolePrefab = Resources.Load("Prefabs/Weapons/BulletHole") as GameObject;
         bloodParticlePrefab = Resources.Load("Particles/BloodParticle") as GameObject;
         impactParticlePrefab = Resources.Load("Particles/ImpactParticle") as GameObject;
         muzzleFlash = GetComponentInChildren<ParticleSystem>();
@@ -59,7 +60,7 @@ public class Gun : MonoBehaviourPunCallbacks {
 
     protected new void OnDisable() => controls.Disable();
 
-    protected void Update() {
+    protected virtual void Update() {
         if(!PV.IsMine) { return; }
         if(Cursor.lockState == CursorLockMode.Locked) {
             GetInput();
@@ -101,8 +102,9 @@ public class Gun : MonoBehaviourPunCallbacks {
                 bool playerTag = hit.transform.tag == "Player";
                 PV.RPC("SpawnParticles", RpcTarget.All, hit.point, hit.normal, playerTag);
                 hit.collider.GetComponent<IDamageable>()?.TakeDamage(damage);
-                if(hit.collider.GetComponent<Rigidbody>() != null)
-                    hit.collider.GetComponent<Rigidbody>().AddForce(-hit.normal * 250);                
+                if(hit.collider.GetComponent<Rigidbody>() != null) {
+                    hit.collider.GetComponent<Rigidbody>().AddForce(-hit.normal * 250);
+                }
             }
         }
 

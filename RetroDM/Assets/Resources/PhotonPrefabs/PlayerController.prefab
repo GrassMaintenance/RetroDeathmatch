@@ -6098,17 +6098,16 @@ GameObject:
   m_Component:
   - component: {fileID: 2723121433039105514}
   - component: {fileID: 4679628074953408208}
-  - component: {fileID: 6427629193857648921}
   - component: {fileID: 2508704319569429993}
   - component: {fileID: 2213247302750457516}
-  - component: {fileID: 6190584856814718188}
+  - component: {fileID: 8773430268696542074}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2723121433039105514
 Transform:
   m_ObjectHideFlags: 0
@@ -6145,29 +6144,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6427629193857648921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2723121433039105513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b1cee73f24111047858edd17358bbe9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clip: 0
-  reserveAmmo: 0
-  muzzleFlash: {fileID: 0}
-  bloom: 0.0125
-  RPM: 300
-  reloadTime: 0.5
-  clipCount: 3
-  clipSize: 17
-  damage: 25
-  sounds:
-  - {fileID: 8300000, guid: ff63658e0ab22494692d3016804e5093, type: 3}
 --- !u!114 &2508704319569429993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6212,102 +6188,29 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!82 &6190584856814718188
-AudioSource:
+--- !u!114 &8773430268696542074
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2723121433039105513}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 8011765374457387173, guid: 9178e6953ae2bda45a63616c1a2bb05f, type: 2}
-  m_audioClip: {fileID: 8300000, guid: ff63658e0ab22494692d3016804e5093, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1cee73f24111047858edd17358bbe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: 0
+  reserveAmmo: 0
+  muzzleFlash: {fileID: 1829515248372172323}
+  bloom: 0.0125
+  RPM: 300
+  reloadTime: 0.5
+  clipCount: 3
+  clipSize: 17
+  damage: 25
+  sounds:
+  - {fileID: 8300000, guid: ff63658e0ab22494692d3016804e5093, type: 3}
 --- !u!1 &2723568818472811287
 GameObject:
   m_ObjectHideFlags: 0
